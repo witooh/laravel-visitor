@@ -10,4 +10,10 @@ interface IVisitor {
      * @return mixed
      */
     public function visit($object);
+
+    /**
+     * @param object $object
+     * @return mixed
+     */
+    public function defaultVisit($object);
 }

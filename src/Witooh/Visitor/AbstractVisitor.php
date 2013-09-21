@@ -3,7 +3,7 @@
 namespace Witooh\Visitor;
 
 
-class AbstractVisitor implements IVisitor
+abstract class AbstractVisitor implements IVisitor
 {
     /**
      * @param object $object
@@ -15,11 +15,16 @@ class AbstractVisitor implements IVisitor
         $visitorRefection = new \ReflectionObject($this);
 
         $visitMethod = "visitor" . $objectRefection->getName();
-
         if ($visitorRefection->hasMethod($visitMethod)) {
             $this->$visitMethod($object);
         } else {
-            $this->visit($object);
+            $this->defaultVisit($object);
         }
     }
+
+    /**
+     * @param object $object
+     * @return mixed
+     */
+    abstract public function defaultVisit($object);
 }
